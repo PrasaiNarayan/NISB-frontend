@@ -20,7 +20,6 @@ class AppSidebar extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // System name header
           Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -30,9 +29,7 @@ class AppSidebar extends StatelessWidget {
             child: Text(
               '原料受入システム',
               style: GoogleFonts.notoSansJp(
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                color: AppTheme.primary,
+                fontSize: 13, fontWeight: FontWeight.w700, color: AppTheme.primary,
               ),
             ),
           ),
@@ -59,11 +56,11 @@ class AppSidebar extends StatelessWidget {
             onTap: () => onNavigate('/inspected'),
           ),
           _NavItem(
-            icon: Icons.qr_code_scanner,
-            label: 'QRスキャン',
-            route: '/qr-scan',
-            isActive: activeRoute == '/qr-scan',
-            onTap: () => onNavigate('/qr-scan'),
+            icon: Icons.search,
+            label: '原料検索',
+            route: '/search',
+            isActive: activeRoute == '/search',
+            onTap: () => onNavigate('/search'),
           ),
           _NavItem(
             icon: Icons.settings,
@@ -102,19 +99,15 @@ class _NavItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: isActive ? AppTheme.primary.withOpacity(0.08) : null,
           border: isActive
-              ? const Border(left: BorderSide(color: AppTheme.primary, width: 3))
-              : null,
+            ? const Border(left: BorderSide(color: AppTheme.primary, width: 3))
+            : null,
         ),
         child: Row(
           children: [
-            Icon(
-              icon,
-              size: 18,
-              color: isActive ? AppTheme.primary : AppTheme.textSecondary,
-            ),
+            Icon(icon, size: 18,
+              color: isActive ? AppTheme.primary : AppTheme.textSecondary),
             const SizedBox(width: 10),
-            Text(
-              label,
+            Text(label,
               style: GoogleFonts.notoSansJp(
                 fontSize: 13,
                 fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
@@ -128,7 +121,6 @@ class _NavItem extends StatelessWidget {
   }
 }
 
-// Top app bar for screens with sidebar
 class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final List<Widget>? actions;
@@ -149,18 +141,12 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          Text(
-            '原料受入システム',
+          Text('原料受入システム',
             style: GoogleFonts.notoSansJp(
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-              color: AppTheme.primary,
+              fontSize: 14, fontWeight: FontWeight.w700, color: AppTheme.primary,
             ),
           ),
-          if (actions != null) ...[
-            const Spacer(),
-            ...actions!,
-          ],
+          if (actions != null) ...[const Spacer(), ...actions!],
         ],
       ),
     );

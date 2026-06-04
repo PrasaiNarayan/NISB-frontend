@@ -28,7 +28,7 @@ web/index.html.bak
 *.env.local
 
 # pubspec lock (optional — include if you want reproducible builds)
-# pubspec.lock
+pubspec.lock
 
 # Coverage
 coverage/

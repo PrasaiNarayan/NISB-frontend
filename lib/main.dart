@@ -4,7 +4,7 @@ import 'screens/login_screen.dart';
 import 'screens/receiving_list_screen.dart';
 import 'screens/inspection_screen.dart';
 import 'screens/inspected_list_screen.dart';
-import 'screens/qr_scan_screen.dart';
+import 'screens/material_search_screen.dart';
 import 'services/api_service.dart';
 
 void main() {
@@ -59,10 +59,7 @@ class _AppShellState extends State<AppShell> {
 
   @override
   Widget build(BuildContext context) {
-    if (!_loggedIn) {
-      return LoginScreen(onLogin: _handleLogin);
-    }
-
+    if (!_loggedIn) return LoginScreen(onLogin: _handleLogin);
     return _buildCurrentScreen();
   }
 
@@ -80,8 +77,8 @@ class _AppShellState extends State<AppShell> {
         );
       case '/inspected':
         return InspectedListScreen(onNavigate: _handleNavigate);
-      case '/qr-scan':
-        return QrScanScreen(onNavigate: _handleNavigate);
+      case '/search':
+        return MaterialSearchScreen(onNavigate: _handleNavigate);
       default:
         return ReceivingListScreen(
           onNavigate: _handleNavigate,
