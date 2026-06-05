@@ -7,9 +7,7 @@ import 'screens/inspected_list_screen.dart';
 import 'screens/material_search_screen.dart';
 import 'services/api_service.dart';
 
-void main() {
-  runApp(const NisbApp());
-}
+void main() => runApp(const NisbApp());
 
 class NisbApp extends StatelessWidget {
   const NisbApp({super.key});
@@ -36,54 +34,33 @@ class _AppShellState extends State<AppShell> {
   bool _loggedIn = false;
   String _currentRoute = '/receiving';
   RawMaterial? _selectedMaterial;
-  String? _employeeCode;
 
-  void _handleLogin(String code) {
-    setState(() {
-      _loggedIn = true;
-      _employeeCode = code;
-      _currentRoute = '/receiving';
-    });
-  }
+  void _handleLogin(String code) =>
+    setState(() { _loggedIn = true; _currentRoute = '/receiving'; });
 
-  void _handleNavigate(String route) {
+  void _handleNavigate(String route) =>
     setState(() => _currentRoute = route);
-  }
 
-  void _handleInspect(RawMaterial material) {
-    setState(() {
-      _selectedMaterial = material;
-      _currentRoute = '/inspection';
-    });
-  }
+  void _handleInspect(RawMaterial material) =>
+    setState(() { _selectedMaterial = material; _currentRoute = '/inspection'; });
 
   @override
   Widget build(BuildContext context) {
     if (!_loggedIn) return LoginScreen(onLogin: _handleLogin);
-    return _buildCurrentScreen();
-  }
-
-  Widget _buildCurrentScreen() {
     switch (_currentRoute) {
       case '/receiving':
         return ReceivingListScreen(
-          onNavigate: _handleNavigate,
-          onInspect: _handleInspect,
-        );
+          onNavigate: _handleNavigate, onInspect: _handleInspect);
       case '/inspection':
         return InspectionScreen(
-          onNavigate: _handleNavigate,
-          material: _selectedMaterial,
-        );
+          onNavigate: _handleNavigate, material: _selectedMaterial);
       case '/inspected':
         return InspectedListScreen(onNavigate: _handleNavigate);
       case '/search':
         return MaterialSearchScreen(onNavigate: _handleNavigate);
       default:
         return ReceivingListScreen(
-          onNavigate: _handleNavigate,
-          onInspect: _handleInspect,
-        );
+          onNavigate: _handleNavigate, onInspect: _handleInspect);
     }
   }
 }
